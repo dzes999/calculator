@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:kalkulator"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
-        Title="MainWindow" Height="480" Width="300">
+        Title="MainWindow" Height="540" Width="300">
     <Grid Background="Black">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -15,7 +15,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="120"/>
+            <RowDefinition Height="180"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -23,14 +23,17 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBox  x:Name="maintb" Grid.ColumnSpan="4" Margin="4" BorderThickness="0"
-               FontSize="60" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
+               FontSize="60" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" Padding="0 0 12 12"
                Background="Black" Foreground="White"
                Text="0">
         </TextBox>
         
-        <Button x:Name="AC" Grid.Column="0" Grid.Row="1" Click="AC_Click" Style="{DynamicResource RoundButton}" Content="C" Background="#FFA5A5AE" Foreground="Black"/>
-        <Button x:Name="plusminus" Grid.Column="1" Grid.Row="1" Click="plusminus_Click" Style="{DynamicResource RoundButton}" Content="+/-" Background="#FFA5A5AE" Foreground="Black" Padding="0 0 0 5"/>
-        <Button x:Name="modulo" Grid.Column="2" Grid.Row="1" Click="Default_Click" Style="{DynamicResource RoundButton}" Content="%" Background="#FFA5A5AE" Foreground="Black"/>
+        <Button x:Name="AC" Grid.Column="0" Grid.Row="1" Click="AC_Click" Style="{DynamicResource RoundButton}" Content="C" 
+                Background="#FFA5A5AE" Foreground="Black" FontSize="28"/>
+        <Button x:Name="plusminus" Grid.Column="1" Grid.Row="1" Click="plusminus_Click" Style="{DynamicResource RoundButton}" Content="+/-" 
+                Background="#FFA5A5AE" Foreground="Black" Padding="0 0 0 5" FontSize="28"/>
+        <Button x:Name="modulo" Grid.Column="2" Grid.Row="1" Click="Default_Click" Style="{DynamicResource RoundButton}" Content="%" 
+                Background="#FFA5A5AE" Foreground="Black" FontSize="28"/>
         <Button x:Name="one" Grid.Column="0" Grid.Row="4" Click="Default_Click" Style="{DynamicResource RoundButton}" Content="1"/>
         <Button x:Name="two" Grid.Column="1" Grid.Row="4" Click="Default_Click"  Style="{DynamicResource RoundButton}" Content="2"/>
         <Button x:Name="three" Grid.Column="2" Grid.Row="4" Click="Default_Click"  Style="{DynamicResource RoundButton}" Content="3"/>
