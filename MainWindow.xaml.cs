@@ -16,18 +16,79 @@ using System.Windows.Shapes;
 
 namespace kalkulator
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
         }
+        private void Enable()
+        {
+            divide.IsEnabled = true;
+            multiply.IsEnabled = true;
+            coma.IsEnabled = true;
+            plus.IsEnabled = true;
+            minus.IsEnabled = true;
+            modulo.IsEnabled = true;
+            equals.IsEnabled = true;
+            plusminus.IsEnabled = true;
+        }
+        private void Disable()
+        {
+            coma.IsEnabled = false;
+            multiply.IsEnabled = false;
+            divide.IsEnabled = false;
+            modulo.IsEnabled = false;
+            plus.IsEnabled = false;
+            minus.IsEnabled = false;
+            equals.IsEnabled = false;
+            plusminus.IsEnabled = false;
+        }
+        private void Default_Click(object sender, RoutedEventArgs e)
+        {
+            //font size by text length
+            if(maintb.Text.Length > 4)
+            {
+                maintb.FontSize = 55;
+            } 
+            if(maintb.Text.Length > 6)
+            {
+                maintb.FontSize = 50;
+            } 
+            if(maintb.Text.Length > 8)
+            {
+                maintb.FontSize = 45;
+            }
+            if (maintb.Text.Length > 10)
+            {
+                maintb.FontSize = 40;
+            }
+            if (maintb.Text.Length > 11)
+            {
+                maintb.FontSize = 25;
+            }
+            if(maintb.Text.Length > 18)
+            {
+                maintb.FontSize = 15;
+            }
+            
+
+            if (maintb.Text == "0" || maintb.Text == "∞")
+            {
+                maintb.Clear();
+            }
+
+            maintb.Text += ((Button)sender).Content.ToString();
+            Enable();
+            if (maintb.Text[maintb.Text.Length - 1] == '-' || maintb.Text[maintb.Text.Length - 1] == '+' || maintb.Text[maintb.Text.Length - 1] == '%')
+            {
+                Disable();
+            }
+        }
         private void AC_Click(object sender, RoutedEventArgs e)
         {
             maintb.Text = "0";
+            Enable();
         }
 
         private void plusminus_Click(object sender, RoutedEventArgs e)
@@ -44,16 +105,6 @@ namespace kalkulator
             }
             maintb.Text = result;
         }
-
-        private void modulo_Click(object sender, RoutedEventArgs e)
-        {
-            if (maintb.Text == "0")
-            {
-                maintb.Clear();
-            }
-            maintb.Text = maintb.Text + "%";
-        }
-
         private void divide_Click(object sender, RoutedEventArgs e)
         {
             if (maintb.Text == "0")
@@ -61,35 +112,8 @@ namespace kalkulator
                 maintb.Clear();
             }
             maintb.Text = maintb.Text + "/";
+            Disable();
         }
-
-        private void seven_Click(object sender, RoutedEventArgs e)
-        {
-            if (maintb.Text == "0")
-            {
-                maintb.Clear();
-            }
-            maintb.Text = maintb.Text + 7;
-        }
-
-        private void eight_Click(object sender, RoutedEventArgs e)
-        {
-            if (maintb.Text == "0")
-            {
-                maintb.Clear();
-            }
-            maintb.Text = maintb.Text + 8;
-        }
-
-        private void nine_Click(object sender, RoutedEventArgs e)
-        {
-            if (maintb.Text == "0")
-            {
-                maintb.Clear();
-            }
-            maintb.Text = maintb.Text + 9;
-        }
-
         private void multiply_Click(object sender, RoutedEventArgs e)
         {
             if (maintb.Text == "0")
@@ -97,102 +121,35 @@ namespace kalkulator
                 maintb.Clear();
             }
             maintb.Text = maintb.Text + "*";
+            Disable();
         }
-
-        private void four_Click(object sender, RoutedEventArgs e)
-        {
-            if (maintb.Text == "0")
-            {
-                maintb.Clear();
-            }
-            maintb.Text = maintb.Text + 4;
-        }
-
-        private void five_Click(object sender, RoutedEventArgs e)
-        {
-            if (maintb.Text == "0")
-            {
-                maintb.Clear();
-            }
-            maintb.Text = maintb.Text + 5;
-        }
-
-        private void six_Click(object sender, RoutedEventArgs e)
-        {
-            if (maintb.Text == "0")
-            {
-                maintb.Clear();
-            }
-            maintb.Text = maintb.Text + 6;
-        }
-
-        private void minus_Click(object sender, RoutedEventArgs e)
-        {
-            if (maintb.Text == "0")
-            {
-                maintb.Clear();
-            }
-            maintb.Text = maintb.Text + "-";
-        }
-
-        private void one_Click(object sender, RoutedEventArgs e)
-        {
-            if (maintb.Text == "0")
-            {
-                maintb.Clear();
-            }
-            maintb.Text = maintb.Text + 1;
-        }
-
-        private void two_Click(object sender, RoutedEventArgs e)
-        {
-            if (maintb.Text == "0")
-            {
-                maintb.Clear();
-            }
-            maintb.Text = maintb.Text + 2;
-        }
-
-        private void three_Click(object sender, RoutedEventArgs e)
-        {
-            if (maintb.Text == "0")
-            {
-                maintb.Clear();
-            }
-            maintb.Text = maintb.Text + 3;
-        }
-
-        private void plus_Click(object sender, RoutedEventArgs e)
-        {
-            if (maintb.Text == "0")
-            {
-                maintb.Clear();
-            }
-            maintb.Text = maintb.Text + "+";
-        }
-
-        private void zero_Click(object sender, RoutedEventArgs e)
-        {
-            if (maintb.Text == "0")
-            {
-                maintb.Clear();
-            }
-            maintb.Text = maintb.Text + 0;
-        }
-
         private void coma_Click(object sender, RoutedEventArgs e)
         {
-            if (maintb.Text == "0")
-            {
-                maintb.Clear();
-            }
             maintb.Text = maintb.Text + ".";
+            Disable();
         }
         private void equals_Click(object sender, RoutedEventArgs e)
         {
             string math = maintb.Text;
-            string result = new DataTable().Compute(math, null).ToString();
-            maintb.Text = result;
+            if (math[math.Length - 1] != '/')
+            {
+                maintb.Text = maintb.Text + 0;
+            }
+            else
+            {
+                maintb.Text = "div/zero";
+            }
+            if (maintb.Text != "div/zero")
+            {
+                string result = new DataTable().Compute(math, null).ToString();
+                maintb.Text = result;
+            }
+            else
+            {
+                maintb.Text = "0";
+            }
+            Enable();
+            maintb.FontSize = 60;
         }
     }
 }
