@@ -141,8 +141,15 @@ namespace kalkulator
             }
             if (maintb.Text != "div/zero")
             {
-                string result = new DataTable().Compute(math, null).ToString();
-                maintb.Text = result;
+                if (maintb.Text.Contains('%') & maintb.Text.Contains('.'))
+                {
+                    maintb.Text = "error";
+                }
+                else
+                {
+                    string result = new DataTable().Compute(math, null).ToString();
+                    maintb.Text = result;
+                }
             }
             else
             {
