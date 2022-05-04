@@ -8,15 +8,38 @@
             <Style.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="100" />
+                    
                 </Style>
             </Style.Resources>
+            <Setter Property="Background" Value="#FF2D312D"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="Background" Value="#FF2D312D"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Margin" Value="2"/>
         </Style>
+        
         <Style TargetType="Button" x:Key="RoundButton2">
             <Style.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="20" />
                 </Style>
+                <Style TargetType="ContentControl">
+                    <Setter Property="Background" Value="#FF2D312D"/>
+                </Style>
             </Style.Resources>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#FF2D312D"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Width" Value="132"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="22 0 0 0"/>
         </Style>
     </Application.Resources>
 </Application>
