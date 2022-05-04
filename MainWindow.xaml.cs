@@ -107,21 +107,14 @@ namespace kalkulator
         }
         private void divide_Click(object sender, RoutedEventArgs e)
         {
-            if (maintb.Text == "0")
-            {
-                maintb.Clear();
-            }
             maintb.Text = maintb.Text + "/";
             Disable();
         }
         private void multiply_Click(object sender, RoutedEventArgs e)
         {
-            if (maintb.Text == "0")
-            {
-                maintb.Clear();
-            }
             maintb.Text = maintb.Text + "*";
             Disable();
+            equals.IsEnabled = true;
         }
         private void coma_Click(object sender, RoutedEventArgs e)
         {
@@ -130,33 +123,54 @@ namespace kalkulator
         }
         private void equals_Click(object sender, RoutedEventArgs e)
         {
-            string math = maintb.Text;
-            if (math[math.Length - 1] != '/')
+            //power exception
+            if (maintb.Text.Last() == '*')
             {
-                maintb.Text = maintb.Text + 0;
+                char[] chars = new char[1];
+                chars[0] = '*';
+                string result = maintb.Text.TrimEnd(chars);
+                string aresult = result + '*' + result;
+                string end = new DataTable().Compute(aresult, null).ToString();
+                maintb.Text = end;  
+                Enable();
             }
             else
             {
-                maintb.Text = "div/zero";
-            }
-            if (maintb.Text != "div/zero")
-            {
-                if (maintb.Text.Contains('%') & maintb.Text.Contains('.'))
+                string math = maintb.Text;
+                if (math[math.Length - 1] != '/')
                 {
-                    maintb.Text = "error";
+                    maintb.Text = maintb.Text + 0;
                 }
                 else
                 {
-                    string result = new DataTable().Compute(math, null).ToString();
-                    maintb.Text = result;
+                    maintb.Text = "div/zero";
                 }
+                if (maintb.Text != "div/zero")
+                {
+                    if (maintb.Text.Contains('%') & maintb.Text.Contains('.'))
+                    {
+                        maintb.Text = "error";
+                    }
+                    else
+                    {
+                        string result = new DataTable().Compute(math, null).ToString();
+                        if (result == "∞" || result == "NaN")
+                        {
+                            maintb.Text = "div/zero";
+                        }
+                        else
+                        {
+                            maintb.Text = result;
+                        }
+                    }
+                }
+                else
+                {
+                    maintb.Text = "0";
+                }
+                Enable();
+                maintb.FontSize = 60;
             }
-            else
-            {
-                maintb.Text = "0";
-            }
-            Enable();
-            maintb.FontSize = 60;
         }
     }
 }
